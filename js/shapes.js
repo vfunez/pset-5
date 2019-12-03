@@ -26,7 +26,11 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-    // write your exercise 1 code here
+  let person = prompt("Message:");
+
+    var ctx = document.getElementById('student-canvas-1').getContext('2d');
+    ctx.font = "48px sans-serif";
+    ctx.strokeText(person, 30, 70, 994);
 };
 
 /*
