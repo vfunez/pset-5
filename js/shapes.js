@@ -33,7 +33,7 @@ const sayHello = function() {
   }
     const ctx = document.getElementById('student-canvas-1').getContext('2d');
     ctx.font = "48px sans-serif";
-    ctx.clearRect(0, 0, 994, 128);
+    ctx.clearRect(0, 0, 1024, 128);
     ctx.strokeText(person, 30, 70, 994);
 };
 
