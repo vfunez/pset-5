@@ -26,15 +26,21 @@ window.onload = function() {
  */
 
 const sayHello = function() {
+  const ctx = document.getElementById('student-canvas-1').getContext('2d');
+
   let person = prompt("Message:");
-  while (person.length >= 50) {
+  while (person !== null && person.length >= 50) {
     alert("Your message is too long. Keep it under 50 characters.");
     person = prompt("Message:");
   }
-    const ctx = document.getElementById('student-canvas-1').getContext('2d');
+
+  if (person == null) {
+    ctx.clearRect(0, 0, 1024, 128);
+  } else {
     ctx.font = "48px sans-serif";
     ctx.clearRect(0, 0, 1024, 128);
-    ctx.strokeText(person, 30, 70, 994);
+    ctx.strokeText(person, 30, 70, 994);  
+  }
 };
 
 /*
