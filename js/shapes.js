@@ -19,6 +19,8 @@ window.onload = function() {
     // equivalent set of six event listeners for your solutions. the first one is done for you.
 
     document.getElementById("hello").onclick = sayHello;
+    document.getElementById("rectangle").onclick = drawRectangle;
+
 }
 
 /*
@@ -39,7 +41,7 @@ const sayHello = function() {
   } else {
     ctx.font = "48px sans-serif";
     ctx.clearRect(0, 0, 1024, 128);
-    ctx.strokeText(person, 30, 70, 994);  
+    ctx.strokeText(person, 30, 70, 994);
   }
 };
 
@@ -48,7 +50,24 @@ const sayHello = function() {
  */
 
 const drawRectangle = function() {
-    // write your exercise 2 code here
+  const ctx = document.getElementById('student-canvas-2').getContext('2d');
+
+  let width = prompt("Width:");
+  let height = prompt("Height:");
+  let x = prompt("X:");
+  let y = prompt("Y:");
+  while (person !== null && person.length >= 50) {
+    alert("Your message is too long. Keep it under 50 characters.");
+    person = prompt("Message:");
+  }
+
+  if (person == null) {
+    ctx.clearRect(0, 0, 1024, 128);
+  } else {
+    ctx.font = "48px sans-serif";
+    ctx.clearRect(0, 0, 1024, 128);
+    ctx.strokeText(person, 30, 70, 994);
+  }
 };
 
 /*
