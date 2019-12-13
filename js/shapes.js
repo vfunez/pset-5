@@ -6,23 +6,12 @@ window.onload = function() {
     document.getElementById("smile-sample").onclick = drawFaceStaff;
     document.getElementById("pyramid-sample").onclick = drawPyramidStaff;
 
-    // this is how we're connecting our buttons to our JavaScript functions. let's walk through it.
-    //
-    // document.getElementById("some-id")   <-- you need to give each button a unique ID
-    //                                          and access it in this manner
-    //
-    // onclick is an event that is fired when you click something (in our case, a button).
-    // when we give onclick a value, we're telling JavaScript what to do when we click the button.
-    // you should set onclick equal to your function names (i.e., sayHello).
-    //
-    // there are six event listeners being added for the staff solutions. you'll have an
-    // equivalent set of six event listeners for your solutions. the first one is done for you.
-
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
     document.getElementById("triangle").onclick = drawTriangle;
     document.getElementById("smile").onclick = drawFace;
+    document.getElementById("pyramid").onclick = drawPyramid;
 }
 
 /*
@@ -219,5 +208,44 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-    // write your exercise 5 code here
+  const ctx = document.getElementById('student-canvas-6').getContext('2d');
+  ctx.clearRect(0, 0, 1024, 512);
+
+  let counter = 5;
+  let distance = 0;
+  let heightOne = 0;
+  let distanceModify = 0;
+  let heightModify = 0;
+
+  do {
+      let side = prompt("Side:");
+      if (side == null) {
+        break;
+      }
+      if (side < 1) {
+        alert("Your block size must be at least 1.")
+      }
+      if (side >= 101) {
+        alert("Your pyramid won't fit on the canvas")
+      }
+      if (isNaN(side)) {
+        alert("Your block size is not a number.")
+      }
+    } while (side < 1 || side >= 101 || isNaN(side))
+
+  for (i = 5; i > 0; i--) {
+    counter = i
+    while(counter >= 1) {
+      ctx.beginPath();
+      ctx.rect(10 + Number(distance), (502 - side) - Number(heightOne), Number(side), Number(side));
+      ctx.stroke();
+      ctx.closePath();
+      distance = Number(distance) + Number(side)
+      counter--
+    }
+    distanceModify++
+    distance = distanceModify * (1/2 * side)
+    heightModify++
+    heightOne = heightModify * side
+  }
 };
