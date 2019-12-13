@@ -49,25 +49,45 @@ const sayHello = function() {
  * Exercise 2.
  */
 
-const drawRectangle = function() {
-  const ctx = document.getElementById('student-canvas-2').getContext('2d');
+ const drawRectangle = function() {
+   const ctx = document.getElementById('student-canvas-2').getContext('2d');
+   ctx.clearRect(0, 0, 1024, 512);
 
-  let width = prompt("Width:");
-  let height = prompt("Height:");
-  let x = prompt("X:");
-  let y = prompt("Y:");
-  while (person !== null && person.length >= 50) {
-    alert("Your message is too long. Keep it under 50 characters.");
-    person = prompt("Message:");
-  }
+   let width = prompt("Width:");
+   let height = prompt("Height:");
+   let x = prompt("X:");
+   let y = prompt("Y:");
 
-  if (person == null) {
-    ctx.clearRect(0, 0, 1024, 128);
-  } else {
-    ctx.font = "48px sans-serif";
-    ctx.clearRect(0, 0, 1024, 128);
-    ctx.strokeText(person, 30, 70, 994);
-  }
+do {
+   let width = prompt("Width:");
+   let height = prompt("Height:");
+   let x = prompt("X:");
+   let y = prompt("Y:");
+   if (width == null || height == null || x == null || y == null) {
+    break;
+       }
+       if (width < 1 && width > 1024) {
+         alert("Your width must be between 1 and 1024.");
+       } else if (height < 1 && height > 512) {
+         alert("Your height must be between 1 and 512.");
+       } else if (x < 1 && x > 1024) {
+         alert("Your x-coordinate must be between 1 and 1024.");
+       } else if (y < 1 && y > 512) {
+         alert("Your y-coordinate must be between 1 and 512.");
+       } else if (Number.isNaN(width) || Number.isNaN(height) || Number.isNaN(x) || Number.isNaN(y)) {
+         alert("One of your values is not a number.");
+       } else if (Number(width) + Number(x) > 1024 || Number(height) + Number(y) > 512) {
+         alert("Your rectangle won't fit on the canvas.");
+      }
+    }
+       while (width < 1 || width > 1024 || height < 1 || height > 512 || x < 1 || x > 1024 || y < 1 || y > 512 || Number.isNaN(width) || Number.isNaN(height) || Number.isNaN(x) || Number.isNaN(y) || Number(width) + Number(x) > 1024 || Number(height) + Number(y) > 512)
+
+       if (width !== null && height !== null && x !== null && y !== null) {
+       ctx.beginPath();
+       ctx.rect(x, y, width, height);
+       ctx.closePath();
+       ctx.stroke();
+     }
 };
 
 /*
