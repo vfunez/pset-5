@@ -44,28 +44,34 @@ const sayHello = function() {
    const ctx = document.getElementById('student-canvas-2').getContext('2d');
    ctx.clearRect(0, 0, 1024, 512);
 
+   let width, height, x, y;
 do {
-   let width = prompt("Width:");
-   let height = prompt("Height:");
-   let x = prompt("X:");
-   let y = prompt("Y:");
+   width = prompt("Width:");
+   height = prompt("Height:");
+   x = prompt("X:");
+   y = prompt("Y:");
    if (width == null || height == null || x == null || y == null) {
     break;
+  } else {
+    width = Number(width);
+    height = Number(height);
+    x = Number(x);
+    y = Number(y);
+  }
+       if (Number.isNaN(width) || Number.isNaN(height) || Number.isNaN(x) || Number.isNaN(y)) {
+         alert("One of your values is not a number.");
        }
-       if (width < 1 && width > 1024) {
+       else if (width < 1 || width > 1024) {
          alert("Your width must be between 1 and 1024.");
        }
-       else if (height < 1 && height > 512) {
+       else if (height < 1 || height > 512) {
          alert("Your height must be between 1 and 512.");
        }
-       else if (x < 1 && x > 1024) {
+       else if (x < 1 || x > 1024) {
          alert("Your x-coordinate must be between 1 and 1024.");
        }
-       else if (y < 1 && y > 512) {
+       else if (y < 1 || y > 512) {
          alert("Your y-coordinate must be between 1 and 512.");
-       }
-       else if (Number.isNaN(width) || Number.isNaN(height) || Number.isNaN(x) || Number.isNaN(y)) {
-         alert("One of your values is not a number.");
        }
        else if (Number(width) + Number(x) > 1024 || Number(height) + Number(y) > 512) {
          alert("Your rectangle won't fit on the canvas.");
@@ -88,13 +94,15 @@ const drawColoredRectangle = function() {
   const ctx = document.getElementById('student-canvas-3').getContext('2d');
   ctx.clearRect(0, 0, 1024, 128);
 
+  let color, caseInsensitive;
+
   do {
-      let color = prompt("Color:");
+      color = prompt("Color:");
       if (color == null) {
         break;
-      }
-      color = String(color)
-      let caseInsensitive = color.toLowerCase()
+      } else {
+      color = String(color) }
+      caseInsensitive = color.toLowerCase()
       if (caseInsensitive != "black" && caseInsensitive != "blue" && caseInsensitive != "green" && caseInsensitive != "orange" && caseInsensitive != "purple" && caseInsensitive != "red" && caseInsensitive != "yellow") {
         alert(color + " is not a supported color.")
       }
@@ -115,20 +123,23 @@ const drawTriangle = function() {
   const ctx = document.getElementById('student-canvas-4').getContext('2d');
   ctx.clearRect(0, 0, 1024, 512);
 
+  let sideOne, sideTwo, sideThree, height, hypotenuse, base;
+
+
 do {
-    let sideOne = prompt("Side 1:");
-    let sideTwo = prompt("Side 2:");
-    let sideThree = prompt("Side 3:");
-    let height = Math.min(sideOne, sideTwo, sideThree);
-    let hypotenuse = Math.max(sideOne, sideTwo, sideThree);
-    let base = Math.sqrt((hypotenuse * hypotenuse) - (height * height));
+    sideOne = prompt("Side 1:");
+    sideTwo = prompt("Side 2:");
+    sideThree = prompt("Side 3:");
+    height = Math.min(sideOne, sideTwo, sideThree);
+    hypotenuse = Math.max(sideOne, sideTwo, sideThree);
+    base = Math.sqrt((hypotenuse * hypotenuse) - (height * height));
 
     if (height == 0 && hypotenuse == 0 && base == 0) {
       break;
-    }
-    sideOne = Number(SideOne)
-    sideTwo = Number(SideTwo)
-    sideThree = Number(SideThree)
+    } else {
+    sideOne = Number(sideOne)
+    sideTwo = Number(sideTwo)
+    sideThree = Number(sideThree) }
 
     if (height * height + base * base != hypotenuse * hypotenuse || height == 0 || hypotenuse == 0 || base == 0  || sideOne + sideTwo + sideThree - hypotenuse - height != base) {
        alert("That's not a valid right triangle.")
@@ -161,8 +172,10 @@ const drawFace = function() {
   const ctx = document.getElementById('student-canvas-5').getContext('2d');
   ctx.clearRect(0, 0, 1024, 512);
 
+  let radius, eyes, mouth;
+
   do {
-      let radius = prompt("Radius:");
+      radius = prompt("Radius:");
       if (radius == null) {
         break;
       }
@@ -177,8 +190,8 @@ const drawFace = function() {
       }
     } while (radius < 32 || isNaN(radius) || radius > 256)
 
-      let eyes = 0.15 * radius
-      let mouth = 0.7 * radius
+      eyes = 0.15 * radius
+      mouth = 0.7 * radius
 
   ctx.beginPath();
   ctx.arc(512, 256, radius, 0, 2 * Math.PI);
@@ -206,6 +219,7 @@ const drawPyramid = function() {
   const ctx = document.getElementById('student-canvas-6').getContext('2d');
   ctx.clearRect(0, 0, 1024, 512);
 
+  let side;
   let counter = 5;
   let distance = 0;
   let heightOne = 0;
@@ -213,7 +227,7 @@ const drawPyramid = function() {
   let heightModify = 0;
 
   do {
-      let side = prompt("Side:");
+      side = prompt("Side:");
       if (side == null) {
         break;
       }
