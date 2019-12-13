@@ -44,11 +44,6 @@ const sayHello = function() {
    const ctx = document.getElementById('student-canvas-2').getContext('2d');
    ctx.clearRect(0, 0, 1024, 512);
 
-   let width = prompt("Width:");
-   let height = prompt("Height:");
-   let x = prompt("X:");
-   let y = prompt("Y:");
-
 do {
    let width = prompt("Width:");
    let height = prompt("Height:");
