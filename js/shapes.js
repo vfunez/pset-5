@@ -21,6 +21,7 @@ window.onload = function() {
     document.getElementById("hello").onclick = sayHello;
     document.getElementById("rectangle").onclick = drawRectangle;
     document.getElementById("colored-rectangle").onclick = drawColoredRectangle;
+    document.getElementById("triangle").onclick = drawTriangle;
 }
 
 /*
@@ -112,7 +113,7 @@ const drawColoredRectangle = function() {
       if (caseInsensitive != "black" && caseInsensitive != "blue" && caseInsensitive != "green" && caseInsensitive != "orange" && caseInsensitive != "purple" && caseInsensitive != "red" && caseInsensitive != "yellow") {
         alert(color + " is not a supported color.")
       }
-    } 
+    }
     while (caseInsensitive != "black" && caseInsensitive != "blue" && caseInsensitive != "green" && caseInsensitive != "orange" && caseInsensitive != "purple" && caseInsensitive != "red" && caseInsensitive != "yellow")
 
     if (color != null) {
@@ -126,7 +127,45 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-    // write your exercise 4 code here
+  const ctx = document.getElementById('student-canvas-4').getContext('2d');
+  ctx.clearRect(0, 0, 1024, 512);
+
+do {
+    let sideOne = prompt("Side 1:");
+    let sideTwo = prompt("Side 2:");
+    let sideThree = prompt("Side 3:");
+    let height = Math.min(sideOne, sideTwo, sideThree);
+    let hypotenuse = Math.max(sideOne, sideTwo, sideThree);
+    let base = Math.sqrt((hypotenuse * hypotenuse) - (height * height));
+
+    if (height == 0 && hypotenuse == 0 && base == 0) {
+      break;
+    }
+    sideOne = Number(SideOne)
+    sideTwo = Number(SideTwo)
+    sideThree = Number(SideThree)
+
+    if (height * height + base * base != hypotenuse * hypotenuse || height == 0 || hypotenuse == 0 || base == 0  || sideOne + sideTwo + sideThree - hypotenuse - height != base) {
+       alert("That's not a valid right triangle.")
+     }
+     if (isNaN(sideOne) || isNaN(sideTwo) || isNaN(sideThree)) {
+       alert("One of your sides is not a number.")
+     }
+     if (height > 512 || hypotenuse > 1310720 || base > 1024) {
+       alert("Your triangle won't fit on the canvas.")
+     }
+   }  while ((Math.floor(base) * Math.floor(base) + height * height != hypotenuse * hypotenuse) || isNaN(sideOne) || isNaN(sideTwo) || isNaN(sideThree) || height > 512 || hypotenuse > 1310720 || base > 1024 || height == 0 || hypotenuse == 0 || base == 0)
+
+   if ((base * base + height * height == hypotenuse * hypotenuse) && (height < 512 && hypotenuse < 1145 && base < 1024) && (height != 0 && hypotenuse != 0 && base != 0) && (height != null && hypotenuse != null && base != null)) {
+     height = height + 25
+     base = base + 25
+     ctx.beginPath();
+     ctx.moveTo(25, 25);
+     ctx.lineTo(25, height);
+     ctx.lineTo(base, height)
+     ctx.lineTo(25, 25)
+     ctx.stroke();
+ }
 };
 
 /*
